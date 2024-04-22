@@ -11,7 +11,6 @@ pipeline {
             steps {
                 git branch: 'main', url: "${env.GITHUB_REPO_URL}"
             }
-            
         }
         stage('Docker Build') {
             steps {
@@ -24,4 +23,5 @@ pipeline {
             }
         }
     }
+    
 }
