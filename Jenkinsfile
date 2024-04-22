@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Run Docker Image') {
             steps {
-                bat 'docker run -p 5000:5000 location_device_manager'
+                bat 'docker run -d -p 5000:5000 location_device_manager'
             }
         }
     }
