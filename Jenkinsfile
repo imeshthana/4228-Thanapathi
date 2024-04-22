@@ -1,15 +1,26 @@
 
 pipeline {
     agent any
+
+    environment {
+        GITHUB_REPO_URL = 'https://github.com/imeshthana/4228-Thanapathi.git'
+    }
+
     stages {
-        stage('Checkout git branch') {
+        stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main', url: "${env.GITHUB_REPO_URL}"
+            }
+            
+        }
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t location_device_manager .'
             }
         }
-        stage('Run Docker Compose') {
+        stage('Run Docker Image') {
             steps {
-                sh 'docker compose up'
+                bat 'docker run -p 5000:5000 location_device_manager'
             }
         }
     }
